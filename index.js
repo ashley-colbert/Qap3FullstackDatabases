@@ -12,9 +12,9 @@ app.use(methodOverride('_method')); // So is this!
 app.get('/', (req, res) => {
     res.render('index.ejs', { });
 });
-app.get('/about', (request, response) => {
-    response.render('about.ejs');
-});
+// app.get('/about', (request, response) => {
+//     response.render('about.ejs');
+// });
 
 const actorsRouter = require('./routes/staff')
 app.use('/actors', actorsRouter);
