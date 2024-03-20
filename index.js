@@ -17,17 +17,17 @@ app.get('/', (req, res) => {
 // });
 
 const actorsRouter = require('./routes/staff')
-app.use('/actors', actorsRouter);
+app.use('/staff', actorsRouter);
 
 const loginsRouter = require('./routes/supplies')
-app.use('/logins', loginsRouter);
+app.use('/supplies', loginsRouter);
 
 const usersRouter = require('./routes/orders')
-app.use('/users', usersRouter);
+app.use('/orders', usersRouter);
 
 // anything beginning with "/api" will go into this
-const apiRouter = require('./routes/api')
-app.use('/api', apiRouter);
+// const apiRouter = require('./routes/api')
+// app.use('/api', apiRouter);
 
 app.use((req, res) => {
     res.status(404).render('404');
