@@ -6,28 +6,26 @@ const PORT = 3000;
 global.DEBUG = true;
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: true, })); // This is important!
-app.use(methodOverride('_method')); // So is this!
+app.use(express.urlencoded({ extended: true, }));
+app.use(methodOverride('_method'));
 
 app.get('/', (req, res) => {
     res.render('index.ejs', { });
 });
-// app.get('/about', (request, response) => {
-//     response.render('about.ejs');
-// });
 
-const actorsRouter = require('./routes/staff')
-app.use('/staff', actorsRouter);
+const staffRouter = require('./routes/staff')
+app.use('/staff', staffRouter);
 
-const loginsRouter = require('./routes/supplies')
-app.use('/supplies', loginsRouter);
+const suppliesRouter = require('./routes/supplies')
+app.use('/supplies', suppliesRouter);
 
-const usersRouter = require('./routes/orders')
-app.use('/orders', usersRouter);
+const ordersRouter = require('./routes/orders')
+app.use('/orders', ordersRouter);
+
 
 // anything beginning with "/api" will go into this
-// const apiRouter = require('./routes/api')
-// app.use('/api', apiRouter);
+const apiRouter = require('./routes/api')
+app.use('/api', apiRouter);
 
 app.use((req, res) => {
     res.status(404).render('404');
@@ -36,3 +34,4 @@ app.use((req, res) => {
 app.listen(PORT, () => {
     console.log(`Simple app running on port ${PORT}.`)
 });
+
