@@ -7,14 +7,21 @@
           <b>Orders: </b></br>
       <% if (theOrders.length > 0) { %>
           <% theOrders.forEach(order => { %>
-              <b>Order Id:</b> <%= order.orderID %><b> Item Id:</b> <%= order.itemID %>
+              <b>Order Id:</b> <%= order.orderID %><br>
+              <b>Date ordered:</b> <%= order.orderDate %><br>
+              <b>Quantity ordered:</b> <%= order.quantityOrdered %><br>
+              <b>Staff Id:</b> <%= order.staffID %><br>
+              <b>Item Id:</b> <%= order.itemID %><br>
               <a href="/orders/<%= order.orderID %>/edit?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>">edit</a>
               <a href="/orders/<%= order.orderID %>/delete?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>">delete</a>
-              <a href="/orders/<%= order.orderID %>/replace?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>">replace</a>
+              <a href="/orders/<%= order.orderID %>/replace?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>">replace</a><br><br>
 </br> 
               <% }) %>
       <% } %>
-      </br><label>Add Order:</label></br>
+
+      </br>
+
+      <label>Add Order:</label></br>
       <label>Order ID:
         <input type="text" id="orderID" name="orderID" value="<%= locals.orderID %>" required>
     </label><br>

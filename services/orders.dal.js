@@ -9,7 +9,7 @@ var getOrders = function() {
         if(DEBUG) console.log(err);
         reject(err);
       } else {
-        if(DEBUG) console.log("inside the Orders.dal.getOrders() success");
+        if(DEBUG) console.log("inside the orders.dal.getOrders() success");
         if(DEBUG) console.log(result.rows);
         resolve(result.rows);
       }
@@ -49,11 +49,11 @@ var addOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   });
 };
 
-var putOrder = function(id, quantityOrdered, orderDate, staffID, itemID) {
+var putOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   if(DEBUG) console.log("orders.dal.putOrder()");
   return new Promise(function(resolve, reject) {
-    const sql = "UPDATE public.\"Orders\" SET SET \"quantityOrdered\"=$2, \"orderDate\"=$3, \"staffID\"=$4, \"itemID\"=$5 WHERE \"orderID\" =$1;";
-    dal.query(sql, [id, quantityOrdered, orderDate, staffID, itemID], (err, result) => {
+    const sql = "UPDATE public.\"Orders\" SET \"orderDate\"=$2, \"quantityOrdered\"=$3, \"staffID\"=$4, \"itemID\"=$5 WHERE \"orderID\" =$1;";
+    dal.query(sql, [id, orderDate, quantityOrdered, staffID, itemID], (err, result) => {
       if (err) {
           reject(err);
         } else {
@@ -63,11 +63,11 @@ var putOrder = function(id, quantityOrdered, orderDate, staffID, itemID) {
   });
 };
 
-var patchOrder = function(id, quantityOrdered, orderDate, staffID, itemID) {
+var patchOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   if(DEBUG) console.log("orders.dal.patchOrder()");
   return new Promise(function(resolve, reject) {
-    const sql = "UPDATE public.\"Orders\" SET \"quantityOrdered\"=$2, \"orderDate\"=$3, \"staffID\"=$4, \"itemID\"=$5 WHERE \"orderID\" =$1;";
-    dal.query(sql, [id, quantityOrdered, orderDate, staffID, itemID], (err, result) => {
+    const sql = "UPDATE public.\"Orders\" SET  \"orderDate\"=$2, \"quantityOrdered\"=$3, \"staffID\"=$4, \"itemID\"=$5 WHERE \"orderID\" =$1;";
+    dal.query(sql, [id, orderDate, quantityOrdered, staffID, itemID], (err, result) => {
       if (err) {
           reject(err);
         } else {
