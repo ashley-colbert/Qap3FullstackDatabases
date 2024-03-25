@@ -70,6 +70,7 @@ router.patch('/:id', async (req, res) => {
     if(DEBUG) console.log('item.PATCH: ' + req.params.id);
     try {
         await suppliesDal.patchItem(req.params.id, req.body.name, req.body.quantity, req.body.reorderPoint, req.body.department);
+        console.log("edited")
         res.redirect('/supplies/');
     } catch {
         // log this error to an error log file.
