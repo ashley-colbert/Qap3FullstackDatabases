@@ -52,7 +52,7 @@ var addOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
 var putOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   if(DEBUG) console.log("orders.dal.putOrder()");
   return new Promise(function(resolve, reject) {
-    const sql = "UPDATE public.\"Orders\" SET \"orderDate\"='$2', \"quantityOrdered\"=$3, \"staffID\"=$4, \"itemID\"=$5 WHERE \"orderID\" =$1;";
+    const sql = "UPDATE public.\"Orders\" SET \"orderDate\"=$2, \"quantityOrdered\"=$3, \"staffID\"=$4, \"itemID\"=$5 WHERE \"orderID\" =$1;";
     dal.query(sql, [id, orderDate, quantityOrdered, staffID, itemID], (err, result) => {
       if (err) {
           reject(err);

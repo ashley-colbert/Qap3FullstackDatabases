@@ -1,23 +1,18 @@
 <html lang="en">
+    <%- include('./header.ejs') %>
     <body>
-        
-        <div class="">
-            <form action="/staff/<%= locals.staffID %>?_method=PUT" method="POST">
-                
-                  <label>Staff ID to be updated:<br>
-                  <input type="text" name="staffID" value="<%= staffID %>"><br></label>
-                  <label>Name:</br>
-                    <input type="text" name="name" value="<%= name %>" placeholder="Full Name" required></label><br>
-                    <label>Address:<br>
-                    <input type="text" name="streetAdd" value="<%= streetAdd %>" placeholder="Street Address"required><br>
-                    <input type="text" name="city" value="<%= city %>" placeholder="City" required><br>
-                    <input type="text" name="prov" value="<%= prov %>" placeholder="Province" required><br></label>
-                    <label>Phone:<br>
-                    <input type="text" name="phone" value="<%= phone %>" placeholder="Phone" required><br></label>
-                    <label>Email:<br>
-                    <input type="text" name="email" value="<%= email %>" placeholder="email" required><br></label>
-                </br>
-                <button>Update</button>
+        <%- include('./navBar.ejs') %>
+        <div class="create content">
+            <form action="/staff/<%= locals.theId %>?_method=PUT" method="POST">
+                <label>Replace Staff Member:</br>
+                    <input type="text" name="name" value="<%= locals.name %>" required>
+                    <input type="text" name="streetAdd" value="<%= locals.streetAdd %>" required>
+                    <input type="text" name="city" value="<%= locals.city %>" required>
+                    <input type="text" name="prov" value="<%= locals.prov %>" required>
+                    <input type="text" name="phone" value="<%= locals.phone %>" required>
+                    <input type="text" name="email" value="<%= locals.email %>" required>
+                    </label></br>
+                <button>PUT</button>
             </form>
         </div>
     </body>

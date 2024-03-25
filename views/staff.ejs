@@ -1,39 +1,54 @@
-<html lang = "en">
+<html lang="en">
   <%- include('./header.ejs') %>
-
-  <body>
-    <%- include('./navBar.ejs') %>
-    
-
-
-    <div class="">
-      <form action="/staff/<%= locals.staffID %>/replace?_method=PUT" method="POST">
-            <label>Staff ID to be updated:<br>
-            <input type="text" name="staffID" value="<%= locals.staffID %>"><br></label>
-            <label>Name:</br>
-              <input type="text" name="name" value="<%= locals.name %>" placeholder="Full Name" required></label><br>
-              <label>Address:<br>
-              <input type="text" name="streetAdd" value="<%= locals.streetAdd %>" placeholder="Street Address"required><br>
-              <input type="text" name="city" value="<%= locals.city %>" placeholder="City" required><br>
-              <input type="text" name="prov" value="<%= locals.prov %>" placeholder="Province" required><br></label>
-              <label>Phone:<br>
-              <input type="text" name="phone" value="<%= locals.phone %>" placeholder="Phone" required><br></label>
-              <label>Email:<br>
-              <input type="text" name="email" value="<%= locals.email %>" placeholder="email" required><br></label>
+    <body>
+      <%- include('./navBar.ejs') %>
+      <div class="">
+            <form action="/staff" method="POST">
+                <b>Staff: </b></br>
+            <% if (theStaff.length > 0) { %>
+                <% theStaff.forEach(staff => { %>
+                    <b>Staff:</b> <%= staff.staffID%><br>
+                    <b>Staff name:</b> <%= staff.name %> <br>
+                    <b>Address:</b> <%= staff.streetAdd%>,
+                    <%= staff.city%>,
+                    <%= staff.prov%><br>
+                    <b>Phone:</b> <%= staff.phone%><br>
+                    <b>Email:</b> <%= staff.email%><br>
+                    
+                    <a href="/staff/<%=staff.staffID%>/edit?name=<%=staff.name%>&streetAdd=<%=staff.streetAdd%>&city=<%=staff.city%>&prov=<%=staff.prov%>&phone=<%=staff.phone%>&email=<%=staff.email%>">edit</a>
+                    <a href="/staff/<%=staff.staffID%>/delete?name=<%=staff.name%>&streetAdd=<%=staff.streetAdd%>&city=<%=staff.city%>&prov=<%=staff.prov%>&phone=<%=staff.phone%>&email=<%=staff.email%>">delete</a>
+                    <a href="/staff/<%=staff.staffID%>/replace?name=<%=staff.name%>&streetAdd=<%=staff.streetAdd%>&city=<%=staff.city%>&prov=<%=staff.prov%>&phone=<%=staff.phone%>&email=<%=staff.email%>">replace</a></br><br>
+                    <% }) %>
+            <% } %>
+            </br><label>Add Staff Member:</label></br>
+            <label>Staff ID:
+              <input type="text" id="staffID" name="staffID" value="<%= locals.staffID %>" required>
+          </label><br>
+            <label>Name:
+                <input type="text" id="name" name="name" value="<%= locals.name %>" required>
+            </label><br>
+            <label>Street Address:
+                <input type="text" id="streetAdd" name="streetAdd" value="<%= locals.streetAdd %>" required>
+            </label>
+            </br>
+            <label>City:
+              <input type="text" id="city" name="city" value="<%= locals.city %>" required>
+          </label>
           </br>
-          <button>Update</button>
-      </form>
-  </div>
-    <div class="">
-      <h1>Staff: </h1>
-
-        <% staffMembers.forEach(function(staff) { %>
-          Staff ID: <%= staff.staffID %>,<br>
-          Name: <%= staff.name %>,<br>
-          Address: <%= staff.StreetAdd %>, <%= staff.city %>,<%= staff.prov %>,<br>
-          Phone: <%= staff.phone %>,<br>
-          Email: <%= staff.email %><br> <br>
-          <% }); %>
-    </div>
-  </body>
+          <label>Province:
+            <input type="text" id="prov" name="prov" value="<%= locals.prov %>" required>
+        </label>
+        </br>
+        <label>Phone:
+          <input type="text" id="phone" name="phone" value="<%= locals.phone %>" required>
+      </label>
+      </br>
+      <label>Email:
+        <input type="text" id="email" name="email" value="<%= locals.email %>" required>
+    </label>
+    </br>
+            <button>POST</button>
+        </form>
+        </div>
+    </body>
 </html>
