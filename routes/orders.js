@@ -71,7 +71,7 @@ router.put('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     if(DEBUG) console.log('orders.PATCH: ' + req.params.id);
     try {
-        await ordersDal.patchOrder(req.params.id, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID );
+        await ordersDal.patchOrder(req.body.id, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID );
         res.redirect('/orders/');
     } catch {
         // log this error to an error log file.

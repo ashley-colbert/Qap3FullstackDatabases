@@ -13,9 +13,9 @@ const staffRouter = require('./staffAPI')
 const orderRouter = require('./orderAPI')
 router.use('/orderAPI', orderRouter);
 
-// // http://localhost:3000/api/supplyAPI/
-// const suppliesRouter = require('./supplyAPI')
-// router.use('/suppliesAPI', suppliesRouter);
+// http://localhost:3000/api/supplyAPI/
+const suppliesRouter = require('./supplyAPI')
+router.use('/suppliesAPI', suppliesRouter);
 
 
 

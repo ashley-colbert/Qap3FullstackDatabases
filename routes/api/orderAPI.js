@@ -34,7 +34,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     if(DEBUG) { 
         console.log('ROUTE: /api/orders/ POST');
-        // console.log(req);
+        console.log(req);
     }
     try {
         await ordersDal.addOrder(req.params.id, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID);

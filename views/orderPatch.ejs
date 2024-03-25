@@ -4,19 +4,19 @@
         <%- include('./navBar.ejs') %>
         <div class="">
           
-            <form action="/orders/<%= locals.theID %>?_method=PATCH" method="POST">
+            <form action="/orders/<%= locals.theId %>?_method=PATCH" method="POST">
               
               <label>Order Date(yyyy/mm/dd)
-                <input type="text"  name="dateOrdered" value="<%= locals.dateOrdered %>" required>
+                <input type="text" id="<%= locals.dateOrdered %>" name="" value="<%= locals.dateOrdered %>" required>
               </label>
               <label>Order Quantity:</br>
-              <input type="text"  name="quantityOrdered" value="<%= locals.quantityOrdered %>" required>
+              <input type="text" id="<%= locals.quantityOrdered %>" name="quantityOrdered" value="<%= locals.quantityOrdered %>" required>
             </label>
             <label>Staff ID
-              <input type="text"  name="staffID" value="<%= locals.staffID %>" required>
+              <input type="text" id="<%= locals.staffID %>" name="staffID" value="<%= locals.staffID %>" required>
             </label>
             <label>Item ID
-              <input type="text" name="itemID" value="<%= locals.itemID %>" required>
+              <input type="text" id="<%= locals.itemID %>" name="itemID" value="<%= locals.itemID %>" required>
             </label></br>
                 <button>PATCH</button>
             </form>
