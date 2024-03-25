@@ -32,14 +32,14 @@ router.get('/:id/replace', async (req, res) => {
     res.render('orderPut.ejs', { theId: req.params.id, orderDate: req.query.orderDate, quantityOrdered: req.query.quantityOrdered, staffID: req.query.staffID, itemID: req.query.itemID});
 });
 
-// https://localhost:3000/orders/205/edit
+
 router.get('/:id/edit', async (req, res) => {
     if(DEBUG) console.log('order.Edit : ' + req.params.id);
-    res.render('orderPatch.ejs', { orderDate: req.query.orderDate, quantityOrdered: req.query.quantityOrdered, staffID: req.query.staffID, itemID: req.query.itemID, theId: req.params.orderID});
+    res.render('orderPatch.ejs', { orderDate: req.query.orderDate, quantityOrdered: req.query.quantityOrdered, staffID: req.query.staffID, itemID: req.query.itemID, theId: req.params.id});
 });
 
 router.get('/:id/delete', async (req, res) => {
-    if(DEBUG) console.log('order.Delete : ' + req.params.orderID);
+    if(DEBUG) console.log('order.Delete : ' + req.params.id);
     res.render('orderDelete.ejs', {orderDate: req.query.orderDate, quantityOrdered: req.query.quantityOrdered, staffID: req.query.staffID, itemID: req.query.itemID ,theId: req.params.id});
 });
 
@@ -71,7 +71,7 @@ router.put('/:id', async (req, res) => {
 router.patch('/:id', async (req, res) => {
     if(DEBUG) console.log('orders.PATCH: ' + req.params.id);
     try {
-        await ordersDal.patchOrder(req.body.id, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID );
+        await ordersDal.patchOrder(req.params.id, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID );
         res.redirect('/orders/');
     } catch {
         // log this error to an error log file.

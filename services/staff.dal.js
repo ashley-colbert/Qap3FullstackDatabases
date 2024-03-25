@@ -3,7 +3,7 @@ const dal = require("./database");
 var getStaff = function() {
   if(DEBUG) console.log("staff.dal.getStaff()");
   return new Promise ((resolve, reject) => {
-    const sql = "SELECT \"staffID\", name, \"streetAdd\", city, prov, phone, email FROM \"Staff\""
+    const sql = "SELECT \"staffID\", name, \"streetAdd\", name, city, prov, phone, email FROM \"Staff\""
 
     dal.query(sql, [], (err, result) => {
       if(err) {
@@ -18,12 +18,12 @@ var getStaff = function() {
   });
 }
 
-var getStaffById = function(staffID) {
+var getStaffById = function(id) {
   if(DEBUG) console.log("staff.dal.getStaffById()");
   return new Promise ((resolve, reject) => {
-    const sql = "SELECT \"staffID\", name, \"streetAdd\", city, prov, phone, email FROM \"Staff\" WHERE \"staffID\" = 5";
+    const sql = "SELECT * FROM \"Staff\" WHERE \"itemID\" = $1";
 
-    dal.query(sql, [staffID], (err, result) => {
+    dal.query(sql, [id], (err, result) => {
       if(err) {
         if(DEBUG) console.log(err);
         reject(err);
@@ -36,17 +36,16 @@ var getStaffById = function(staffID) {
   });
 }
 
-var addStaffMember = function(name, streetAdd, city, prov, phone, email) {
-  if(DEBUG) console.log("staff.dal.addStaffMember()");
+var addStaff = function(id, name, streetAdd, city, prov, phone, email) {
+  if(DEBUG) console.log("staff.dal.addstaff()");
   return new Promise ((resolve, reject) => {
-    const sql = "INSERT INTO public.\"staffID\"(name, \"streetAdd\", city, prov, phone, email) VALUES ($1, $2, $3, $4, $5, $6)";
+    const sql = "INSERT INTO public.\"Staff\"(\"staffID\", name, \"streetAdd\", city, prov, phone, email) VALUES ($1, $2, $3, $4, $5, $6, $7)";
 
-    dal.query(sql, [name, streetAdd, city, prov, phone, email], (err, result) => {
+    dal.query(sql, [id, name, streetAdd, city, prov, phone, email], (err, result) => {
       if(err) {
         if(DEBUG) console.log(err);
         reject(err);
       } else {
-        if(DEBUG) console.log(`Success: new staff member ${result.rows[0].name}`);
         if(DEBUG) console.log(result.rows);
         resolve(result.rows);
       }
@@ -54,11 +53,11 @@ var addStaffMember = function(name, streetAdd, city, prov, phone, email) {
   });
 }
 
-var putStaff = function(staffID, name, streetAdd, city, prov, phone, email) {
-  if(DEBUG) console.log("staff.pg.dal.putStaff()");
+var putStaff = function(id, name, streetAdd, city, prov, phone, email) {
+  if(DEBUG) console.log("staff.dal.putStaff()");
   return new Promise(function(resolve, reject) {
     const sql = "UPDATE public.\"Staff\" SET name=$2, \"streetAdd\"=$3, city=$4, prov=$5, phone=$6, email=$7 WHERE \"staffID\"=$1;";
-    dal.query(sql, [staffID, name, streetAdd, city, prov, phone, email], (err, result) => {
+    dal.query(sql, [id, name, streetAdd, city, prov, phone, email], (err, result) => {
       if (err) {
           reject(err);
         } else {
@@ -68,9 +67,40 @@ var putStaff = function(staffID, name, streetAdd, city, prov, phone, email) {
   });
 };
 
+var patchStaff = function(id, name, streetAdd, city, prov, phone, email) {
+  if(DEBUG) console.log("staff.dal.patchStaff()");
+  return new Promise(function(resolve, reject) {
+    const sql = "UPDATE public.\"Staff\" SET name=$2, \"streetAdd\"=$3, city=$4, prov=$5, phone=$6, email=$7 WHERE \"staffID\"=$1;";
+    dal.query(sql, [id, name, streetAdd, city, prov, phone, email], (err, result) => {
+      if (err) {
+          reject(err);
+        } else {
+          resolve(result.rows);
+        }
+    });
+  });
+};
+
+var deleteStaff = function(id) {
+  if(DEBUG) console.log("staff.dal.deleteStaff()");
+  return new Promise(function(resolve, reject) {
+    const sql = "DELETE FROM public.\"Staff\" WHERE \"staffID\" = $1;";
+    dal.query(sql, [id], (err, result) => {
+      if (err) {
+          reject(err);
+        } else {
+          resolve(result.rows);
+        }
+    });
+  });
+};
+
+
 module.exports = {
   getStaff,
   getStaffById,
-  addStaffMember,
-  putStaff
+  addStaff,
+  putStaff,
+  patchStaff,
+  deleteStaff
 }

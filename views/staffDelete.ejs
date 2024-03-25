@@ -1,0 +1,14 @@
+<html lang="en">
+    <%- include('./header.ejs') %>
+    <body>
+        <%- include('./navBar.ejs') %>
+        <div class="">
+            <form action="/staff/<%= locals.theId %>?_method=DELETE" method="POST">
+                <label>Are you sure you want to delete this staff member?</br>
+                    <input type="text" id="<%= locals.theId %>" name="staff" value="<%= locals.staffID %>">
+                </label>
+                <button>DELETE</button>
+            </form>
+        </div>
+    </body>
+</html>

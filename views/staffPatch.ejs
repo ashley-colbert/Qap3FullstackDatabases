@@ -1,0 +1,19 @@
+<html lang="en">
+    <%- include('./header.ejs') %>
+    <body>
+        <%- include('./navBar.ejs') %>
+        <div class="create content">
+            <form action="/staff/<%= locals.theId %>?_method=PATCH" method="POST">
+                <label>Edit Staff Information:</br>
+                    <input type="text" name="name" value="<%= locals.name %>" required>
+                    <input type="text" name="streetAdd" value="<%= locals.streetAdd %>" required>
+                    <input type="text" name="city" value="<%= locals.city %>" required>
+                    <input type="text" name="prov" value="<%= locals.prov %>" required>
+                    <input type="text" name="phone" value="<%= locals.phone %>" required>
+                    <input type="text" name="email" value="<%= locals.email %>" required>
+                </label></br>
+                <button>PATCH</button>
+            </form>
+        </div>
+    </body>
+</html>

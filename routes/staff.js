@@ -1,81 +1,92 @@
 const express = require('express');
 const router = express.Router();
-const { getStaff, getStaffById, addStaffMember, putStaff} = require('../services/staff.dal');
-
+const staffDal = require('../services/staff.dal')
 
 router.get('/', async (req, res) => {
-  if(DEBUG) console.log("Staff.GET");
-
-  try {
-      let staffMembers = await getStaff();
-      if(DEBUG) console.log("inside the staff.route.GET success");
-      if(DEBUG) console.log(staffMembers);
-      res.render('staff', {staffMembers});
-  } catch {
-      res.render('503');
-  }
+    try {
+        let theStaff = await staffDal.getStaff();
+        if(DEBUG) console.table(theStaff);
+        res.render('staff', {theStaff});
+    } catch {
+        res.render('503');
+    }
 });
 
-router.get('/:staffID', async (req, res) => {
-
-  try {
-      let staffID = await getStaffById(req.params.staffID);
-      if (staffID.length === 0)
-          res.render('norecord')
-      else
-          res.render('staff', {staffID});
-  } catch {
-      res.render('503');
-  }
+router.get('/:id', async (req, res) => {
+    try {
+        const aStaff = await staffDal.getStaffById(req.params.id);
+        if(DEBUG) console.log(`staff.router.get/:id ${aStaff}`);
+        if (aStaff)
+            res.render('staff', {aStaff});
+        else
+            res.render('norecord');
+    } catch {
+        res.render('503');
+    }
 });
 
-router.get('/:staffID/replace', async (req, res) => {
-  if(DEBUG) console.log('staff.Replace : ' + req.params.staffID);
-  res.locals.staffID = req.params.staffID;
-  res.locals.name = req.query.name;
-  res.locals.streetAdd = req.query.streetAdd;
-  res.locals.city = req.query.city;
-  res.locals.prov = req.query.prov;
-  res.locals.phone = req.query.phone;
-  res.locals.email = req.query.email;
-  res.render('staffPut.ejs', res.locals);
+router.get('/:id/replace', async (req, res) => {
+    if(DEBUG) console.log('staff.Replace : ' + req.params.id);
+    res.render('staffPut.ejs', {name: req.query.name, streetAdd: req.query.streetAdd, city: req.query.city, prov: req.query.prov, phone: req.query.phone, email: req.query.email, theId: req.params.id});
 });
 
-router.put('/:staffID/replace', async (req, res) => {
-  console.log("PUT route for updating staff member hit");
-  const { staffID } = req.params;
-  const { name, streetAdd, city, prov, phone, email } = req.body;
-  if (DEBUG) console.log("Updating staff member: " + staffID);
-  try {
-    const result = await putStaff(staffID, name, streetAdd, city, prov, phone, email);
-    res.redirect('/staff/' + staffID);
-  } catch {
-    res.render('503')
-  }
+router.get('/:id/edit', async (req, res) => {
+    if(DEBUG) console.log('staff.Edit : ' + req.params.id);
+    res.render('staffPatch.ejs', {name: req.query.name, streetAdd: req.query.streetAdd, city: req.query.city, prov: req.query.prov, phone: req.query.phone, email: req.query.email, theId: req.params.id});
 });
 
-// router.post('/:staffID/replace', async (req, res) => {
-//   const { staffID } = req.params;
-//   const { name, streetAdd, city, prov, phone, email } = req.body;
-//   if(DEBUG) console.log("updating staff member: " + staffID);
-//   try {
-//     await putStaff(staffID, name, streetAdd, city, prov, phone, email);
-//     res.redirect('/staff/' + staffID);
-//   } catch {
-//     res.render('503');
-//     res.render('staffPut.ejs', res.locals);
-//   }
-// })
+router.get('/:id/delete', async (req, res) => {
+    if(DEBUG) console.log('staff.Delete : ' + req.params.id);
+    res.render('staffDelete.ejs', {name: req.query.name, streetAdd: req.query.streetAdd, city: req.query.city, prov: req.query.prov, phone: req.query.phone, email: req.query.email, theId: req.params.id});
+});
 
 router.post('/', async (req, res) => {
-  if(DEBUG) console.log("Staff.POST");
-  try {
-      await addStaffMember(req.body.name, req.body.streetAdd, req.body.city, req.body.prov, req.body.phone, req.body.email );
-      res.redirect('/Staff/');
-  } catch {
-      res.render('503');
-  }
+    if(DEBUG) console.log("staff.POST");
+    try {
+        await staffDal.addStaff(req.body.staffID, req.body.name, req.body.streetAdd, req.body.city, req.body.prov, req.body.city, req.body.phone, req.body.email);
+        res.redirect('/staff/');
+    } catch {
+        // log this error to an error log file.
+        res.render('503');
+    }
 });
 
+// PUT, PATCH, and DELETE are part of HTTP, not a part of HTML
+// Therefore, <form method="PUT" ...> doesn't work, but it does work for RESTful API
+
+router.put('/:id', async (req, res) => {
+    if(DEBUG) console.log('staff.PUT: ' + req.params.id);
+    try {
+        await staffDal.putStaff(req.params.id, req.body.name, req.body.streetAdd, req.body.city, req.body.prov, req.body.phone, req.body.email);
+        res.redirect('/staff/');
+    } catch {
+        // log this error to an error log file.
+        res.render('503');
+    }
+});
+
+router.patch('/:id', async (req, res) => {
+    if(DEBUG) console.log('staff.PATCH: ' + req.params.id);
+    try {
+        await staffDal.patchStaff(req.params.id, req.body.name, req.body.streetAdd, req.body.city, req.body.prov, req.body.phone, req.body.email);
+        console.log("edited")
+        res.redirect('/staff/');
+    } catch {
+        // log this error to an error log file.
+        res.render('503');
+    }
+});
+
+router.delete('/:id', async (req, res) => {
+    if(DEBUG) console.log('staff.DELETE: ' + req.params.id);
+    try {
+        await staffDal.deleteStaff(req.params.id);
+        res.redirect('/staff/');
+    } catch (err) {
+        if(DEBUG) console.error(err);
+        // log this error to an error log file.
+        res.render('503');
+    }
+});
 
 module.exports = router
