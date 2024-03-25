@@ -1,0 +1,16 @@
+<html lang="en">
+  <%- include('./header.ejs') %>
+  <body>
+    <%- include('./navBar.ejs') %>
+    <div class="">
+      <h1>Supplies</h1>
+      <% allItems.forEach(function(item) { %> Item ID: <%= item.itemID %>,<br />
+      Name: <%= item.name %>,<br />
+      Available: <%= item.quantity %>,<br />
+      Reorder Point: <%= item.reorderPoint %>,<br />
+      Department: <%= item.department %><br />
+      <br />
+      <% }); %>
+    </div>
+  </body>
+</html>

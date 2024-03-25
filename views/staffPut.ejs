@@ -1,0 +1,24 @@
+<html lang="en">
+    <body>
+        
+        <div class="">
+            <form action="/staff/<%= locals.staffID %>?_method=PUT" method="POST">
+                
+                  <label>Staff ID to be updated:<br>
+                  <input type="text" name="staffID" value="<%= staffID %>"><br></label>
+                  <label>Name:</br>
+                    <input type="text" name="name" value="<%= name %>" placeholder="Full Name" required></label><br>
+                    <label>Address:<br>
+                    <input type="text" name="streetAdd" value="<%= streetAdd %>" placeholder="Street Address"required><br>
+                    <input type="text" name="city" value="<%= city %>" placeholder="City" required><br>
+                    <input type="text" name="prov" value="<%= prov %>" placeholder="Province" required><br></label>
+                    <label>Phone:<br>
+                    <input type="text" name="phone" value="<%= phone %>" placeholder="Phone" required><br></label>
+                    <label>Email:<br>
+                    <input type="text" name="email" value="<%= email %>" placeholder="email" required><br></label>
+                </br>
+                <button>Update</button>
+            </form>
+        </div>
+    </body>
+</html>

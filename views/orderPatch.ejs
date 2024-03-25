@@ -1,0 +1,25 @@
+<html lang="en">
+    <%- include('./header.ejs') %>
+    <body>
+        <%- include('./navBar.ejs') %>
+        <div class="">
+          
+            <form action="/orders/<%= locals.theID %>?_method=PATCH" method="POST">
+              
+              <label>Order Date(yyyy/mm/dd)
+                <input type="text"  name="dateOrdered" value="<%= locals.dateOrdered %>" required>
+              </label>
+              <label>Order Quantity:</br>
+              <input type="text"  name="quantityOrdered" value="<%= locals.quantityOrdered %>" required>
+            </label>
+            <label>Staff ID
+              <input type="text"  name="staffID" value="<%= locals.staffID %>" required>
+            </label>
+            <label>Item ID
+              <input type="text" name="itemID" value="<%= locals.itemID %>" required>
+            </label></br>
+                <button>PATCH</button>
+            </form>
+        </div>
+    </body>
+</html>

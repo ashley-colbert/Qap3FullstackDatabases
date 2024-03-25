@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
       let allItems = await getSupplies();
       if(DEBUG) console.log("inside the supplies.route.GET success");
       if(DEBUG) console.log(allItems);
-      res.render('Supplies', {allItems});
+      res.render('supplies', {allItems});
   } catch {
       res.render('503');
   }
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
       if (member.length === 0)
           res.render('norecord')
       else
-          res.render('Supplies', {item});
+          res.render('supplies', {item});
   } catch {
       res.render('503');
   }

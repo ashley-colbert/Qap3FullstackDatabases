@@ -1,0 +1,39 @@
+<html lang = "en">
+  <%- include('./header.ejs') %>
+
+  <body>
+    <%- include('./navBar.ejs') %>
+    
+
+
+    <div class="">
+      <form action="/staff/<%= locals.staffID %>/replace?_method=PUT" method="POST">
+            <label>Staff ID to be updated:<br>
+            <input type="text" name="staffID" value="<%= locals.staffID %>"><br></label>
+            <label>Name:</br>
+              <input type="text" name="name" value="<%= locals.name %>" placeholder="Full Name" required></label><br>
+              <label>Address:<br>
+              <input type="text" name="streetAdd" value="<%= locals.streetAdd %>" placeholder="Street Address"required><br>
+              <input type="text" name="city" value="<%= locals.city %>" placeholder="City" required><br>
+              <input type="text" name="prov" value="<%= locals.prov %>" placeholder="Province" required><br></label>
+              <label>Phone:<br>
+              <input type="text" name="phone" value="<%= locals.phone %>" placeholder="Phone" required><br></label>
+              <label>Email:<br>
+              <input type="text" name="email" value="<%= locals.email %>" placeholder="email" required><br></label>
+          </br>
+          <button>Update</button>
+      </form>
+  </div>
+    <div class="">
+      <h1>Staff: </h1>
+
+        <% staffMembers.forEach(function(staff) { %>
+          Staff ID: <%= staff.staffID %>,<br>
+          Name: <%= staff.name %>,<br>
+          Address: <%= staff.StreetAdd %>, <%= staff.city %>,<%= staff.prov %>,<br>
+          Phone: <%= staff.phone %>,<br>
+          Email: <%= staff.email %><br> <br>
+          <% }); %>
+    </div>
+  </body>
+</html>
