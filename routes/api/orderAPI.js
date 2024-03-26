@@ -5,7 +5,7 @@ const ordersDal = require('../../services/orders.dal')
 router.get('/', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/order/ GET ' + req.url);
     try {
-        let theOrders = await ordersDal.getOrders(); 
+        let theOrders = await ordersDal.getOrders();
         res.json(theOrders);
     } catch {
         // log this error to an error log file.
@@ -32,12 +32,12 @@ router.get('/:id', async (req, res) => {
     }
 });
 router.post('/', async (req, res) => {
-    if(DEBUG) { 
+    if(DEBUG) {
         console.log('ROUTE: /api/orders/ POST');
         console.log(req);
     }
     try {
-        await ordersDal.addOrder(req.params.id, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID);
+        await ordersDal.addOrder(req.body.orderID, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID);
         res.statusCode = 201;
         res.json({message: "Created", status: 201});
     } catch {
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/orders PUT ' + req.params.id);
     try {
-        await ordersDal.putOrder(req.params.id, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID);
+        await ordersDal.putOrder(req.body.orderID, req.body.orderDate, req.body.quantityOrdered, req.body.staffID, req.body.itemID);
         res.statusCode = 200;
         res.json({message: "OK", status: 200});
     } catch {
@@ -86,12 +86,12 @@ router.delete('/:id', async (req, res) => {
     }
 });
 // // list the active api routes
-// if(DEBUG) {
-//     router.stack.forEach(function(r){
-//         if (r.route && r.route.path){
-//         console.log(r.route.path)
-//         }
-//     });
-// }
+if(DEBUG) {
+    router.stack.forEach(function(r){
+        if (r.route && r.route.path){
+        console.log(r.route.path)
+        }
+    });
+}
 
 module.exports = router;

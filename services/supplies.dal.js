@@ -46,8 +46,6 @@ var addItem = function(id, name, quantity, reorderPoint, department) {
         if(DEBUG) console.log(err);
         reject(err);
       } else {
-        // if(DEBUG) console.log(`Success: new supply added ${result.rows[0].name}`);
-        // if(DEBUG) console.log(result.rows);
         resolve(result.rows);
       }
     });

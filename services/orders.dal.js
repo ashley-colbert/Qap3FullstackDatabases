@@ -20,7 +20,7 @@ var getOrders = function() {
 var getOrderByOrderId = function(id) {
   if(DEBUG) console.log("orders.dal.getOrderByOrderId()");
   return new Promise(function(resolve, reject) {
-    const sql = "SELECT \"orderID\" AS id, \"orderDate\", \"quantityOrdered\", \"staffID\", \"itemID\" FROM \"Orders\" WHERE \"orderID\" = $1";
+    const sql = "SELECT  \"orderID\" AS id,  \"orderDate\", \"quantityOrdered\", \"staffID\", \"itemID\" FROM \"Orders\" WHERE \"orderID\" = $1";
     dal.query(sql, [id], (err, result) => {
       if (err) {
         // logging should go here
