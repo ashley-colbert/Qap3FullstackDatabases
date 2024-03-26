@@ -2,9 +2,10 @@
     <%- include('./header.ejs') %>
     <body>
         <%- include('./navBar.ejs') %>
-        <div class="">
+        <div>
             <form action="/supplies/<%= locals.theId %>?_method=DELETE" method="POST">
-                <label>Are you sure you want to delete this order?</br>
+                <h2>Are you sure you want to delete this order?</h2>
+                <label>Confirm order number
                     <input type="text" id="<%= locals.theId %>" name="order" value="<%= locals.itemID %>">
                 </label>
                 <button>DELETE</button>

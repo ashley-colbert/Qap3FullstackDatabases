@@ -2,10 +2,11 @@
     <%- include('./header.ejs') %>
     <body>
         <%- include('./navBar.ejs') %>
-        <div class="">
+        <div>
             <form action="/staff/<%= locals.theId %>?_method=DELETE" method="POST">
-                <label>Are you sure you want to delete this staff member?</br>
-                    <input type="text" id="<%= locals.theId %>" name="staff" value="<%= locals.staffID %>">
+                <h2>Are you sure you want to delete this staff member?</h2>
+                <label>Confirm staff ID
+                    <input type="text" id="<%= locals.theId %>" name="staff" value="<%= locals.staffID %>"><br> <br>
                 </label>
                 <button>DELETE</button>
             </form>
