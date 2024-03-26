@@ -1,47 +1,90 @@
-<html lang = "en">
+<html lang="en">
   <%- include('./header.ejs') %>
   <body>
     <%- include('./navBar.ejs') %>
-    <div class="">
-      <form action="/orders" method="POST">
-          <b>Orders: </b></br>
-      <% if (theOrders.length > 0) { %>
-          <% theOrders.forEach(order => { %>
-              <b>Order Id:</b> <%= order.orderID %><br>
-              <b>Date ordered:</b> <%= order.orderDate %><br>
-              <b>Quantity ordered:</b> <%= order.quantityOrdered %><br>
-              <b>Staff Id:</b> <%= order.staffID %><br>
-              <b>Item Id:</b> <%= order.itemID %><br>
-              <a href="/orders/<%= order.orderID %>/edit?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>">edit</a>
-              <a href="/orders/<%= order.orderID %>/delete?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>">delete</a>
-              <a href="/orders/<%= order.orderID %>/replace?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>">replace</a><br><br>
-</br> 
-              <% }) %>
-      <% } %>
 
-      </br>
+    <form action="/orders" method="POST">
+      <h2>Orders:</h2>
+      <br />
+      <% if (theOrders.length > 0) { %> <% theOrders.forEach(order => { %> Order
+      Id: <%= order.orderID %><br />
+      Date ordered: <%= order.orderDate %><br />
+      Quantity ordered: <%= order.quantityOrdered %><br />
+      Staff Id: <%= order.staffID %><br />
+      Item Id: <%= order.itemID %><br />
+      <a
+        href="/orders/<%= order.orderID %>/edit?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>"
+        >edit</a
+      >
+      <a
+        href="/orders/<%= order.orderID %>/delete?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>"
+        >delete</a
+      >
+      <a
+        href="/orders/<%= order.orderID %>/replace?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>"
+        >replace</a
+      ><br /><br />
+      <br />
+      <% }) %> <% } %>
 
-      <label>Add Order:</label></br>
-      <label>Order ID:
-        <input type="text" id="orderID" name="orderID" value="<%= locals.orderID %>" required>
-    </label><br>
-      <label>Order Date(yyyy/m/dd):
-          <input type="text" id="orderDate" name="orderDate" value="<%= locals.orderDate %>" required>
-      </label><br>
-      <label>Quantity Ordered:
-          <input type="text" id="quantityOrdered" name="quantityOrdered" value="<%= locals.quantityOrdered %>" required>
+      <br />
+
+      <h2>Add Order:</h2>
+      <br />
+      <label
+        >Order ID:
+        <input
+          type="text"
+          id="orderID"
+          name="orderID"
+          value="<%= locals.orderID %>"
+          required
+        /> </label
+      ><br />
+      <label
+        >Order Date(yyyy/m/dd):
+        <input
+          type="text"
+          id="orderDate"
+          name="orderDate"
+          value="<%= locals.orderDate %>"
+          required
+        /> </label
+      ><br />
+      <label
+        >Quantity Ordered:
+        <input
+          type="text"
+          id="quantityOrdered"
+          name="quantityOrdered"
+          value="<%= locals.quantityOrdered %>"
+          required
+        />
       </label>
-      </br>
-      <label>Staff ID:
-        <input type="text" id="staffID" name="staffID" value="<%= locals.staffID %>" required>
-    </label>
-    </br>
-    <label> Item ID:
-      <input type="text" id="itemID" name="itemID" value="<%= locals.itemID %>" required>
-  </label>
-  </br>
-      <button>POST</button>
-  </form>
-
+      <br />
+      <label
+        >Staff ID:
+        <input
+          type="text"
+          id="staffID"
+          name="staffID"
+          value="<%= locals.staffID %>"
+          required
+        />
+      </label>
+      <br />
+      <label>
+        Item ID:
+        <input
+          type="text"
+          id="itemID"
+          name="itemID"
+          value="<%= locals.itemID %>"
+          required
+        />
+      </label>
+      <br />
+      <button>Add</button>
+    </form>
   </body>
 </html>

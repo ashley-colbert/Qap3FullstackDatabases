@@ -2,23 +2,22 @@
   <%- include('./header.ejs') %>
     <body>
       <%- include('./navBar.ejs') %>
-      <div class="">
             <form action="/supplies" method="POST">
-                <b>Supplies: </b></br>
+                <h2>Supplies: </h2><br>
             <% if (theItem.length > 0) { %>
                 <% theItem.forEach(item => { %>
-                    <b>Item ID:</b> <%= item.itemID%><br>
-                    <b>Item name:</b> <%= item.name %> <br>
-                    <b>Quantity:</b> <%= item.quantity%><br>
-                    <b>Reorder Point:</b> <%= item.reorderPoint%><br>
-                    <b>Department:</b> <%= item.department%><br>
+                    Item ID: <%= item.itemID%><br>
+                    Item name: <%= item.name %><br>
+                    Quantity: <%= item.quantity%><br>
+                    Reorder Point: <%= item.reorderPoint%><br>
+                    Department: <br%= item.department%><br>
                     
                     <a href="/supplies/<%=item.itemID%>/edit?name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%item.department%>">edit</a>
                     <a href="/supplies/<%=item.itemID%>/delete?name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%= item.department%>">delete</a>
-                    <a href="/supplies/<%=item.itemID%>/replace??name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%item.department%>">replace</a></br>
+                    <a href="/supplies/<%=item.itemID%>/replace??name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%item.department%>">replace</a><br><br>
                     <% }) %>
             <% } %>
-            </br><label>Add Item:</label></br>
+            <br><h2>Add Item:</h2><br>
             <label>Item ID:
               <input type="text" id="itemID" name="itemID" value="<%= locals.itemID %>" required>
           </label><br>
@@ -28,17 +27,17 @@
             <label>Quantity:
                 <input type="text" id="quantity" name="quantity" value="<%= locals.quantity %>" required>
             </label>
-            </br>
+            <br>
             <label>Reorder Point:
               <input type="text" id="reorderPoint" name="reorderPoint" value="<%= locals.reorderPoint %>" required>
           </label>
-          </br>
+          <br>
           <label>Department:
             <input type="text" id="department" name="department" value="<%= locals.department %>" required>
         </label>
-        </br>
+        <br>
             <button>POST</button>
-        </form>
-        </div>
+            </form>
+        
     </body>
 </html>

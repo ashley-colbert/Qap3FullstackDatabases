@@ -1,17 +1,43 @@
 <html lang="en">
-    <%- include('./header.ejs') %>
-    <body>
-        <%- include('./navBar.ejs') %>
-        <div class="create content">
-            <form action="/supplies/<%= locals.theId %>?_method=PATCH" method="POST">
-                <label>Edit Supplies:</br>
-                    <input type="text" name="name" value="<%= locals.name %>" required>
-                    <input type="text" name="quantity" value="<%= locals.quantity %>" required>
-                    <input type="text" name="reorderPoint" value="<%= locals.reorderPoint %>" required>
-                    <input type="text" name="department" value="<%= locals.Department %>" required>
-                </label></br>
-                <button>PATCH</button>
-            </form>
-        </div>
-    </body>
+  <%- include('./header.ejs') %>
+  <body>
+    <%- include('./navBar.ejs') %>
+    <div>
+      <form action="/supplies/<%= locals.theId %>?_method=PATCH" method="POST">
+        <h2>Edit Supplies:</h2>
+        <label
+          >Product Name:
+          <input type="text" name="name" value="<%= locals.name %>" required />
+        </label>
+        <label
+          >Quantity
+          <input
+            type="text"
+            name="quantity"
+            value="<%= locals.quantity %>"
+            required
+          />
+        </label>
+        <label
+          >Reorder point
+          <input
+            type="text"
+            name="reorderPoint"
+            value="<%= locals.reorderPoint %>"
+            required
+          />
+        </label>
+        <label
+          >Department
+          <input
+            type="text"
+            name="department"
+            value="<%= locals.department %>"
+            required
+          /> </label
+        ><br />
+        <button>PATCH</button>
+      </form>
+    </div>
+  </body>
 </html>

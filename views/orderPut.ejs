@@ -1,16 +1,48 @@
 <html lang="en">
-    <%- include('./header.ejs') %>
-    <body>
-        <%- include('./navBar.ejs') %>
-        <div class="">
-            <form action="/orders/<%= locals.theId %>?_method=PUT" method="POST">
-              <input type="text" name="orderDate" value="<%= locals.orderDate %>" required>
-              <input type="text" name="quantityOrdered" value="<%= locals.quantityOrdered %>" required>
-              <input type="text" name="staffID" value="<%= locals.staffID %>" required>
-              <input type="text" name="itemID" value="<%= locals.itemID %>" required>
-            </label></br>
-                <button>PUT</button>
-            </form>
-        </div>
-    </body>
+  <%- include('./header.ejs') %>
+  <body>
+    <%- include('./navBar.ejs') %>
+    <div>
+      <form action="/orders/<%= locals.theId %>?_method=PUT" method="POST">
+        <h2>Replace Order Information</h2>
+        <label
+          >Order date(yyyy/dd/mm)
+          <input
+            type="text"
+            name="orderDate"
+            value="<%= locals.orderDate %>"
+            required
+          /> </label
+        ><br />
+        <label
+          >Quantity ordered
+          <input
+            type="text"
+            name="quantityOrdered"
+            value="<%= locals.quantityOrdered %>"
+            required
+          /> </label
+        ><br />
+        <label
+          >Staff ID
+          <input
+            type="text"
+            name="staffID"
+            value="<%= locals.staffID %>"
+            required
+          /> </label
+        ><br />
+        <label
+          >Item ID
+          <input
+            type="text"
+            name="itemID"
+            value="<%= locals.itemID %>"
+            required
+          /> </label
+        ><br /><br />
+        <button>PUT</button>
+      </form>
+    </div>
+  </body>
 </html>
