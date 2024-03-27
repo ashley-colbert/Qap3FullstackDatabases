@@ -1,36 +1,36 @@
 var router = require('express').Router();
 const ordersDal = require('../../services/orders.dal')
 
-// api/orders
+// api/ordersAPI - router to 'get' all orders from the database, will return in json format
 router.get('/', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/order/ GET ' + req.url);
     try {
         let theOrders = await ordersDal.getOrders();
         res.json(theOrders);
     } catch {
-        // log this error to an error log file.
         res.statusCode = 503;
         res.json({message: "Service Unavailable", status: 503});
     }
 });
-// api/orders/:id
+
+// api/ordersAPI/:id - will return one specific entry that matched a particular orderID from the database
 router.get('/:id', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/orders/:id GET ' + req.url);
     try {
         let anOrder = await ordersDal.getOrderByOrderId(req.params.id); 
         if (anOrder.length === 0) {
-            // log this error to an error log file.
             res.statusCode = 404;
             res.json({message: "Not Found", status: 404});
         }
         else
             res.json(anOrder);
     } catch {
-        // log this error to an error log file.
         res.statusCode = 503;
         res.json({message: "Service Unavailable", status: 503});
     }
 });
+
+//router to post a new entry into the database
 router.post('/', async (req, res) => {
     if(DEBUG) {
         console.log('ROUTE: /api/orders/ POST');
@@ -41,12 +41,12 @@ router.post('/', async (req, res) => {
         res.statusCode = 201;
         res.json({message: "Created", status: 201});
     } catch {
-        // log this error to an error log file.
         res.statusCode = 503;
         res.json({message: "Service Unavailable", status: 503});
     }
 });
 
+// the put router will replace an entry in the database that matches the orderID
 router.put('/:id', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/orders PUT ' + req.params.id);
     try {
@@ -54,12 +54,12 @@ router.put('/:id', async (req, res) => {
         res.statusCode = 200;
         res.json({message: "OK", status: 200});
     } catch {
-        // log this error to an error log file.
         res.statusCode = 503;
         res.json({message: "Service Unavailable", status: 503});
     }
 });
 
+//the patch router will edit an entry with a matching orderID
 router.patch('/:id', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/orders PATCH ' + req.params.id);
     try {
@@ -67,12 +67,12 @@ router.patch('/:id', async (req, res) => {
         res.statusCode = 200;
         res.json({message: "OK", status: 200});
     } catch {
-        // log this error to an error log file.
         res.statusCode = 503;
         res.json({message: "Service Unavailable", status: 503});
     }
 });
 
+//this will delete an entry with the matching orderID from the database
 router.delete('/:id', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/orders DELETE ' + req.params.id);
     try {
@@ -80,18 +80,10 @@ router.delete('/:id', async (req, res) => {
         res.statusCode = 200;
         res.json({message: "OK", status: 200});
     } catch {
-        // log this error to an error log file.
         res.statusCode = 503;
         res.json({message: "Service Unavailable", status: 503});
     }
 });
-// // list the active api routes
-if(DEBUG) {
-    router.stack.forEach(function(r){
-        if (r.route && r.route.path){
-        console.log(r.route.path)
-        }
-    });
-}
+
 
 module.exports = router;

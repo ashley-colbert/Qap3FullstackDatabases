@@ -6,8 +6,8 @@
             <form action="/staff/<%= locals.theId %>?_method=DELETE" method="POST">
                 <h2>Are you sure you want to delete this staff member?</h2>
                 <label>Confirm staff ID
-                    <input type="text" id="<%= locals.theId %>" name="staff" value="<%= locals.staffID %>"><br> <br>
-                </label>
+                    <input type="text" id="<%= locals.theId %>" name="staff" value="<%= locals.staffID %>">
+                </label><br> <br>
                 <button>Delete</button>
             </form>
         </div>

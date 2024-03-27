@@ -1,5 +1,9 @@
 const dal = require("./database");
 
+
+//the data access layer for the staff table - to be used in both the UI and the restfulAPI
+
+//function to get all stall entries from the database
 var getStaff = function() {
   if(DEBUG) console.log("staff.dal.getStaff()");
   return new Promise ((resolve, reject) => {
@@ -18,6 +22,7 @@ var getStaff = function() {
   });
 }
 
+//function to get one particular entry from the database
 var getStaffById = function(id) {
   if(DEBUG) console.log("staff.dal.getStaffById()");
   return new Promise ((resolve, reject) => {
@@ -36,6 +41,7 @@ var getStaffById = function(id) {
   });
 }
 
+//function to add a staff member to the database
 var addStaff = function(id, name, streetAdd, city, prov, phone, email) {
   if(DEBUG) console.log("staff.dal.addstaff()");
   return new Promise ((resolve, reject) => {
@@ -53,6 +59,7 @@ var addStaff = function(id, name, streetAdd, city, prov, phone, email) {
   });
 }
 
+//function to replace or 'put' an entry in the database
 var putStaff = function(id, name, streetAdd, city, prov, phone, email) {
   if(DEBUG) console.log("staff.dal.putStaff()");
   return new Promise(function(resolve, reject) {
@@ -67,6 +74,7 @@ var putStaff = function(id, name, streetAdd, city, prov, phone, email) {
   });
 };
 
+//function to edit or 'patch' and entry in the database
 var patchStaff = function(id, name, streetAdd, city, prov, phone, email) {
   if(DEBUG) console.log("staff.dal.patchStaff()");
   return new Promise(function(resolve, reject) {
@@ -81,6 +89,7 @@ var patchStaff = function(id, name, streetAdd, city, prov, phone, email) {
   });
 };
 
+//function to delete an entry from the database
 var deleteStaff = function(id) {
   if(DEBUG) console.log("staff.dal.deleteStaff()");
   return new Promise(function(resolve, reject) {
@@ -95,7 +104,7 @@ var deleteStaff = function(id) {
   });
 };
 
-
+//exports of all functions to be used throughout the application
 module.exports = {
   getStaff,
   getStaffById,
