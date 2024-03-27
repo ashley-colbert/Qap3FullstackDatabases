@@ -1,5 +1,8 @@
 const dal = require("./database");
 
+//the data access layer for the orders table - all functions are used in the UI and the restfulAPI
+
+//function to get all orders from the database
 var getOrders = function() {
   if(DEBUG) console.log("Orders.dal.getOrders()");
   return new Promise(function(resolve, reject) {
@@ -17,6 +20,7 @@ var getOrders = function() {
   });
 };
 
+//functions to get one particular order from the database
 var getOrderByOrderId = function(id) {
   if(DEBUG) console.log("orders.dal.getOrderByOrderId()");
   return new Promise(function(resolve, reject) {
@@ -33,6 +37,8 @@ var getOrderByOrderId = function(id) {
   });
 };
 
+
+//function to add a new entry into the database
 var addOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   if(DEBUG) console.log("orders.dal.addOrder()");
   return new Promise(function(resolve, reject) {
@@ -49,6 +55,7 @@ var addOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   });
 };
 
+//function to replace or 'put' an order in the database
 var putOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   if(DEBUG) console.log("orders.dal.putOrder()");
   return new Promise(function(resolve, reject) {
@@ -65,6 +72,7 @@ var putOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   });
 };
 
+//function to edit of 'patch' an order in the database
 var patchOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   if(DEBUG) console.log("orders.dal.patchOrder()");
   return new Promise(function(resolve, reject) {
@@ -80,6 +88,7 @@ var patchOrder = function(id, orderDate, quantityOrdered, staffID, itemID) {
   });
 };
 
+//function to delete an order in the database
 var deleteOrder = function(id) {
   if(DEBUG) console.log("orders.dal.deleteOrder()");
   return new Promise(function(resolve, reject) {
@@ -94,6 +103,7 @@ var deleteOrder = function(id) {
   });
 };
 
+//exports of all functions to be used in the application
 module.exports = {
     getOrders,
     getOrderByOrderId,

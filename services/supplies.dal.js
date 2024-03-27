@@ -1,5 +1,8 @@
 const dal = require("./database");
 
+//the data access layer for the supplies table - functions to be used in for the UI and the restfulAPI
+
+//function to get all supplies from the database
 var getSupplies = function() {
   if(DEBUG) console.log("supplies.dal.getSupplies()");
   return new Promise ((resolve, reject) => {
@@ -18,6 +21,7 @@ var getSupplies = function() {
   });
 }
 
+//function to get one particular entry from the database using the itemID as a parameter
 var getItemById = function(id) {
   if(DEBUG) console.log("staff.dal.getItemById()");
   return new Promise ((resolve, reject) => {
@@ -36,6 +40,7 @@ var getItemById = function(id) {
   });
 }
 
+//function to add an item to the database
 var addItem = function(id, name, quantity, reorderPoint, department) {
   if(DEBUG) console.log("supplies.dal.addItem()");
   return new Promise ((resolve, reject) => {
@@ -52,6 +57,7 @@ var addItem = function(id, name, quantity, reorderPoint, department) {
   });
 }
 
+//function to replace or 'put' an entry in the database
 var putItem = function(id, name, quantity, reorderPoint, department) {
   if(DEBUG) console.log("supplies.dal.putItem()");
   return new Promise(function(resolve, reject) {
@@ -66,6 +72,7 @@ var putItem = function(id, name, quantity, reorderPoint, department) {
   });
 };
 
+//function to edit or 'patch' and item in the database
 var patchItem = function(id, name, quantity, reorderPoint, department) {
   if(DEBUG) console.log("supplies.dal.patchItem()");
   return new Promise(function(resolve, reject) {
@@ -80,6 +87,7 @@ var patchItem = function(id, name, quantity, reorderPoint, department) {
   });
 };
 
+//function to delete and  entry in the database
 var deleteItem = function(id) {
   if(DEBUG) console.log("supplies.dal.deleteItem()");
   return new Promise(function(resolve, reject) {
@@ -94,7 +102,7 @@ var deleteItem = function(id) {
   });
 };
 
-
+//exports of all functions to be used throughout the application
 module.exports = {
   getSupplies,
   getItemById,
