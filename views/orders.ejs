@@ -14,15 +14,15 @@
       Item Id: <%= order.itemID %><br />
       <a
         href="/orders/<%= order.orderID %>/edit?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>"
-        >edit</a
+        >Edit |</a
       >
       <a
         href="/orders/<%= order.orderID %>/delete?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>"
-        >delete</a
+        >Delete |</a
       >
       <a
         href="/orders/<%= order.orderID %>/replace?orderDate=<%= order.orderDate %>&quantityOrdered=<%= order.quantityOrdered %>&staffID=<%= order.staffID %>&itemID=<%= order.itemID %>"
-        >replace</a
+        >Replace</a
       ><br /><br />
       <br />
       <% }) %> <% } %>

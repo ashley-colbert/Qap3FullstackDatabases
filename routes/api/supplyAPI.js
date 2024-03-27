@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/supplies/:id GET ' + req.url);
     try {
-        let anItem = await suppliesDal.getSupplyById(req.params.id);
+        let anItem = await suppliesDal.getItemById(req.params.id);
         if (anItem.length === 0) {
             // log this error to an error log file.
             res.statusCode = 404;
@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
         console.log(req);
     }
     try {
-        await suppliesDal.addItem(req.params.id, req.body.name, req.body.quantity, req.body.reorderPoint, req.body.department );
+        await suppliesDal.addItem(req.body.itemID, req.body.name, req.body.quantity, req.body.reorderPoint, req.body.department );
         res.statusCode = 201;
         res.json({message: "Created", status: 201});
     } catch {
@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/supplies PUT ' + req.params.id);
     try {
-        await itemsDal.putItem(req.params.id, req.body.name, req.body.quantity, req.body.reorderPoint, req.body.department);
+        await itemsDal.putItem(req.body.itemID, req.body.name, req.body.quantity, req.body.reorderPoint, req.body.department);
         res.statusCode = 200;
         res.json({message: "OK", status: 200});
     } catch {

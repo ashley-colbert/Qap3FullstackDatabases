@@ -38,7 +38,7 @@ router.post('/', async (req, res) => {
         console.log(req);
     }
     try {
-        await staffDal.addStaff(req.params.id, req.body.name, req.body.streetAdd, req.body.city, req.body.prov, req.body.phone, req.body.email );
+        await staffDal.addStaff(req.body.staffID, req.body.name, req.body.streetAdd, req.body.city, req.body.prov, req.body.phone, req.body.email );
         res.statusCode = 201;
         res.json({message: "Created", status: 201});
     } catch {
@@ -51,7 +51,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     if(DEBUG) console.log('ROUTE: /api/staff PUT ' + req.params.id);
     try {
-        await staffDal.putStaff(req.params.id, req.body.name, req.body.streetAdd, req.body.city, req.body.prov, req.body.phone, req.body.email);
+        await staffDal.putStaff(req.body.staffID, req.body.name, req.body.streetAdd, req.body.city, req.body.prov, req.body.phone, req.body.email);
         res.statusCode = 200;
         res.json({message: "OK", status: 200});
     } catch {

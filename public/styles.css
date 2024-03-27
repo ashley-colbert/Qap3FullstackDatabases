@@ -23,6 +23,7 @@ nav {
   padding-right: 5px;
 }
 
+
 a:link {
   color:rgb(185, 197, 108);
   text-decoration: none;
@@ -38,4 +39,25 @@ a:hover {
 
 form {
 padding: 5%;
+}
+
+@media only screen and (max-width: 600px) {
+  nav {
+    font-size: 15pt;
+    background-color: rgb(255, 251, 251);
+    a:link {
+      color:rgb(1, 1, 1);
+    }
+    a:visited {
+      color: rgb(55, 53, 53);
+    }
+  }
+}
+
+button {
+  width: 10%;
+  padding: 1em;
+  margin-top: .7em;
+  border-left:black;
+  border-radius: 5px;
 }

@@ -21,7 +21,7 @@ var getStaff = function() {
 var getStaffById = function(id) {
   if(DEBUG) console.log("staff.dal.getStaffById()");
   return new Promise ((resolve, reject) => {
-    const sql = "SELECT * FROM \"Staff\" WHERE \"itemID\" = $1";
+    const sql = "SELECT * FROM \"Staff\" WHERE \"staffID\" = $1";
 
     dal.query(sql, [id], (err, result) => {
       if(err) {

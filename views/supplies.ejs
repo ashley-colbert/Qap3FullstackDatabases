@@ -1,10 +1,10 @@
 <html lang="en">
   <%- include('./header.ejs') %>
     <body>
-      <%- include('./navBar.ejs') %>
-            <form action="/supplies" method="POST">
-                <h2>Supplies: </h2><br>
-            <% if (theItem.length > 0) { %>
+        <%- include('./navBar.ejs') %>
+        <form action="/supplies" method="POST">
+            <h2>Supplies: </h2><br>
+                <% if (theItem.length > 0) { %>
                 <% theItem.forEach(item => { %>
                     Item ID: <%= item.itemID%><br>
                     Item name: <%= item.name %><br>
@@ -12,15 +12,15 @@
                     Reorder Point: <%= item.reorderPoint%><br>
                     Department: <br%= item.department%><br>
                     
-                    <a href="/supplies/<%=item.itemID%>/edit?name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%item.department%>">edit</a>
-                    <a href="/supplies/<%=item.itemID%>/delete?name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%= item.department%>">delete</a>
-                    <a href="/supplies/<%=item.itemID%>/replace??name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%item.department%>">replace</a><br><br>
+                    <a href="/supplies/<%=item.itemID%>/edit?name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%item.department%>">Edit|</a>
+                    <a href="/supplies/<%=item.itemID%>/delete?name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%= item.department%>">Delete|</a>
+                    <a href="/supplies/<%=item.itemID%>/replace??name=<%=item.name%>&quantity=<%=item.quantity%>&reorderPoint=<%=item.reorderPoint%>&department=<%item.department%>">Replace</a><br><br>
                     <% }) %>
-            <% } %>
+                <% } %>
             <br><h2>Add Item:</h2><br>
             <label>Item ID:
-              <input type="text" id="itemID" name="itemID" value="<%= locals.itemID %>" required>
-          </label><br>
+            <input type="text" id="itemID" name="itemID" value="<%= locals.itemID %>" required>
+            </label><br>
             <label>Item Name:
                 <input type="text" id="name" name="name" value="<%= locals.name %>" required>
             </label><br>
@@ -29,15 +29,15 @@
             </label>
             <br>
             <label>Reorder Point:
-              <input type="text" id="reorderPoint" name="reorderPoint" value="<%= locals.reorderPoint %>" required>
-          </label>
-          <br>
-          <label>Department:
+            <input type="text" id="reorderPoint" name="reorderPoint" value="<%= locals.reorderPoint %>" required>
+            </label>
+            <br>
+            <label>Department:
             <input type="text" id="department" name="department" value="<%= locals.department %>" required>
-        </label>
-        <br>
-            <button>POST</button>
-            </form>
+            </label>
+            <br>
+            <button>Add</button>
+        </>
         
     </body>
 </html>

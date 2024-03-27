@@ -1,0 +1,62 @@
+To test the API in terminal
+
+'get' API:
+
+orders:
+curl -X GET http://localhost:3000/api/orderAPI
+
+supplies:
+curl -X GET http://localhost:3000/api/suppliesAPI
+
+staff:
+curl -X GET http://localhost:3000/api/staffAPI
+
+'post'
+
+orders:
+curl -d "orderID=27&orderDate=2024/01/01&quantityOrdered=5&staffID=6&itemID=11" -X POST http://localhost:3000/api/orderAPI
+
+supplies:
+curl -d "itemID=40&name=chicken&quantity=7&reorderPoint=3&department=kitchen" -X POST http://localhost:3000/api/suppliesAPI
+
+staff:
+curl -d "staffID=15&name=Jenny Flack&streetAdd=23 Main Street&city=Paradise&prov=NL&phone=555-444-0000&email=name@email.com" -X POST http://localhost:3000/api/staffAPI
+
+
+'put'
+
+orders:
+curl -d "orderID=27&orderDate=2022/01/01&quantityOrdered=5&staffID=6&itemID=11" -X PUT http://localhost:3000/api/orderAPI/27
+
+supplies:
+curl -d "itemID=40&name=pork&quantity=8&reorderPoint=5&department=kitchen" -X PUT http://localhost:3000/api/suppliesAPI/40
+
+staff:
+curl -d "staffID=15&name=Janie Smith&streetAdd=23 Side Street&city=Paradise&prov=NL&phone=555-222-0000&email=name@email.ca" -X PUT http://localhost:3000/api/staffAPI/15
+
+'patch'
+
+orders:
+curl -d "orderID=27&orderDate=2023/01/01&quantityOrdered=5&staffID=6&itemID=11" -X PATCH http://localhost:3000/api/orderAPI/27
+
+supplies:
+curl -d "itemID=40&name=striploin&quantity=8&reorderPoint=5&department=kitchen" -X PATCH http://localhost:3000/api/suppliesAPI/40
+
+staff:
+curl -d "staffID=15&name=Janie Flack&streetAdd=23 Main Street&city=Paradise&prov=NL&phone=555-222-0000&email=name@email.ca" -X PATCH http://localhost:3000/api/staffAPI/15
+
+
+'delete':
+
+orders:
+curl -X DELETE http://localhost:3000/api/orderAPI/27
+
+supplies:
+curl -X DELETE http://localhost:3000/api/suppliesAPI/40
+
+staff:
+curl -X DELETE http://localhost:3000/api/staffAPI/15
+
+
+
+
